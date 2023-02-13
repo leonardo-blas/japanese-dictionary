@@ -1,0 +1,64 @@
+<table border="1">
+    <tr>
+        <th>word</th>
+        <th>spelling</th>
+        <th>definition</th>
+        <th>kanji</th>
+        <th>kanji meanings</th>
+        <th>radical image</th>
+        <th>radical mnemonic</th>
+        <th>radical meanings</th>
+    </tr>
+    {% for row in rows %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>
+            <table>
+                {% for item in row[3].split(';') %}
+                <tr>
+                    <td>{{ item }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td>
+            <table>
+                {% for item in row[4].split(';') %}
+                <tr>
+                    <td>{{ item }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td>
+            <table>
+                {% for item in row[5].split(';') %}
+                <tr>
+                     <td><a href="{{ item }}">link</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td>
+            <table>
+                {% for item in row[6].split(';') %}
+                <tr>
+                     <td><a href="{{ item }}">link</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td>
+            <table>
+                {% for item in row[7].split(';') %}
+                <tr>
+                    <td>{{ item }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
