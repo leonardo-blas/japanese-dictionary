@@ -1,6 +1,6 @@
 **Deployed on: https://japanese-dictionary.herokuapp.com/**
 
-## Airbnb recruiters
+## Airbnb recruiting team
 Please check app.py.
 
 ## Description
