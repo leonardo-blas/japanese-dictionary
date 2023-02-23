@@ -1,8 +1,5 @@
 **Deployed on: https://japanese-dictionary.herokuapp.com/**
 
-## Airbnb recruiting team
-Please check app.py.
-
 ## Description
 This is a Japanese dictionary. It displays essential Japanese words (according to Kanji alive) next to their meaning, spelling (in hiragana), definition, and kanji composition. Next to each kanji, the dictionary provides an image of the kanji's radical and a mnemonic to see where in nature the radical could stem from.
 
