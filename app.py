@@ -1,3 +1,9 @@
+# Japanese dictionary, by Leonardo Blas.
+# Words are displayed next to their meaning, spelling, kanji, and kanji radical information.
+# Data obtained from the Kanji alive project.
+# The data is stored in a SQLite and displayed using HTML. The backend is managed using Flask.
+# This is a custom dictionary, for my learning style, to help me learn Japanese.
+
 import pandas as pd
 import ast
 import sqlite3
