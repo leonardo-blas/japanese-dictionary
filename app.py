@@ -62,7 +62,6 @@ def create_table():
                             + str(info[1]) + "2.svg;"
                         radical_mnemonic_url += "https://raw.githubusercontent.com/leonardo-blas/kanji-alive-data-media/master/radical-animations/" \
                             + str(info[1]) + "0.svg;"
-
                         radical_meaning += str(info[1:][1:][0]) + ";"
 
                 # Filling the lists to be used to fill the table.
@@ -75,7 +74,7 @@ def create_table():
         # Creating the table.
         connection = sqlite3.connect("dictionary.db")
         cursor = connection.cursor()
-        cursor.execute("DROP TABLE words")  # ADDRESS THIS
+        cursor.execute("DROP TABLE words")
         cursor.execute("CREATE TABLE words (word text, spelling text, definition text, kanji text, kanji_meaning text,"
                        "radical_image_url text, radical_mnemonic_url text, radical_meaning text)")
 
