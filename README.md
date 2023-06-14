@@ -3,6 +3,11 @@ This creates a Japanese dictionary. It displays essential Japanese words (accord
 
 This dictionary could have many uses but I created it to aid me in my quest to learn Japanese.
 
+## How to use
+'''
+flask run
+'''
+
 ## Note
 While most radicals and radical mnemonics have images associated with them, not all of them do. In those cases, a "n/a" message will be displayed.
 
