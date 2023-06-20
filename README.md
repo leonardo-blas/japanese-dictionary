@@ -1,3 +1,5 @@
+Deployed at: http://leonardoblas.pythonanywhere.com
+
 ## Description
 This creates a Japanese dictionary. It displays essential Japanese words (according to Kanji alive) next to their definition, spelling (in hiragana), and kanji composition. Next to each kanji, the dictionary provides an image of the kanji's radical and a mnemonic to see where in nature the radical could stem from.
 
