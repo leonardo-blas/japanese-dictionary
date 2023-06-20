@@ -2,7 +2,7 @@ Deployed at: http://leonardoblas.pythonanywhere.com
 
 ## Important
 Accessing an image and seeing "n/a" doesn't mean the page is broken.
-The Kanji Alive project doesn't have images for some, sometimes self-explanatory, radicals or their mnemonics. For example, the radical for the kanji representing "one" is just one horizontal stroke.
+The Kanji alive project doesn't have images for some, sometimes self-explanatory, radicals or their mnemonics. For example, the radical for the kanji representing "one" is just one horizontal stroke.
 
 ## Description
 This creates a Japanese dictionary. It displays essential Japanese words (according to Kanji alive) next to their definition, spelling (in hiragana), and kanji composition. Next to each kanji, the dictionary provides an image of the kanji's radical and a mnemonic to see where in nature the radical could stem from.
