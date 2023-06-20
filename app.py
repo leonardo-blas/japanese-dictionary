@@ -1,9 +1,3 @@
-# Japanese dictionary, by Leonardo Blas.
-# Words are displayed next to their meaning, spelling, kanji, and kanji radical information.
-# Data obtained from the Kanji alive project.
-# The data is stored in a SQLite table and displayed using HTML. The backend is managed using Flask.
-# This is a custom dictionary, for my learning style, to help me learn Japanese.
-
 import pandas as pd
 import ast
 import sqlite3
@@ -25,7 +19,7 @@ def create_table():
     global table_created
 
     if not table_created:
-        df = pd.read_csv(f"https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv")
+        df = pd.read_csv("https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv")
 
         # Lists to be used to create the table.
         words = []
@@ -80,8 +74,7 @@ def create_table():
         # Creating the table.
         connection = sqlite3.connect("dictionary.db")
         cursor = connection.cursor()
-        cursor.execute("DROP TABLE words")
-        cursor.execute("CREATE TABLE words (word text, spelling text, definition text, kanji text, kanji_meaning text,"
+        cursor.execute("CREATE TABLE IF NOT EXISTS words (word text, spelling text, definition text, kanji text, kanji_meaning text,"
                        "radical_image_url text, radical_mnemonic_url text, radical_meaning text)")
 
         # Filling the table with the data in the lists.
@@ -94,6 +87,8 @@ def create_table():
 
         connection.commit()
         connection.close()
+
+        table_created = True
 
 
 @app.route("/")
@@ -108,7 +103,7 @@ def home():
     connection.close()
 
     # Displaying the table's data.
-    return render_template("table.html", rows=word_rows)
+    return render_template("table2.html", rows=word_rows)
 
 
 if __name__ == "__main__":
