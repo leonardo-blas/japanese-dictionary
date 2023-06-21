@@ -1,7 +1,7 @@
 Deployed at: http://leonardoblas.pythonanywhere.com
 
 ## Notes
-As a data visualization project, the page may take some seconds to load. Note that it displays a table of 5812 essential Japanese words and their information.
+As a data visualization project, the page may take some seconds to load. It displays a table of 5812 essential Japanese words and their information.
 <br>
 The page could be broken down into several pages but I prefer seeing all the information in a single page, as it facilitates using Cmd + F.
 <br>
