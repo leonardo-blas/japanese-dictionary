@@ -1,4 +1,4 @@
-Deployed at: japanesedictionary.pythonanywhere.com
+Deployed at: [japanesedictionary.pythonanywhere.com](https://japanesedictionary.pythonanywhere.com)
 
 ## Notes
 As a data visualization project, the page may take some seconds to load. It displays a table of 5812 essential Japanese words and their information.
