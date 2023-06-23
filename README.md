@@ -14,6 +14,7 @@ This creates and displays a dictionary of 5812 essential Japanese words. It disp
 <br>
 This dictionary could have many uses but I created it to aid me in my quest to learn Japanese.
 <br>
+<br>
 ![sample dictionary row](https://raw.githubusercontent.com/leonardo-blas/essential-japanese-words-dictionary/main/Sample%20dictionary%20row.png)
 
 ## How to use
