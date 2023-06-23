@@ -1,18 +1,16 @@
 Deployed at: [japanesedictionary.pythonanywhere.com](https://japanesedictionary.pythonanywhere.com)
 
 ## Notes
-As a data visualization project, the page may take some seconds to load. It displays a table of 5812 essential Japanese words and their information.
+As a data visualization project, the page may take some seconds to load.
 <br>
-The page could be broken down into several pages but I prefer seeing all the information in a single page, as it facilitates using Cmd + F.
+The data could be displayed on several pages but I prefer seeing all the information on a single page, as it facilitates using Cmd + F.
 <br>
 The table's rows are not lazy loaded because that would interfere with using Cmd + F.
 <br>
 Seeing "n/a" means there is no image associated with a radical or its mnemonic.
 
 ## Description
-This creates a Japanese dictionary. It displays essential Japanese words (according to Kanji alive) next to their definition, spelling (in hiragana), and kanji composition. 
-<br>
-Next to each kanji, the dictionary provides an image of the kanji's radical and a mnemonic to see where in nature the radical could stem from.
+This creates and displays a dictionary of 5812 essential Japanese words. It displays words next to their definition, hiragana spelling, and kanji composition. Next to each kanji, it displays possible kanji meanings and the kanji's radical. Next to each radical, it displays possible radical meanings and a visual mnemonic to see where in nature the radical could stem from.
 <br>
 This dictionary could have many uses but I created it to aid me in my quest to learn Japanese.
 
