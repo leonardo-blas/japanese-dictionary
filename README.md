@@ -13,6 +13,8 @@ Seeing "n/a" means there is no image associated with a radical or its mnemonic.
 This creates and displays a dictionary of 5812 essential Japanese words. It displays words next to their definition, hiragana spelling, and kanji composition. Next to each kanji, it displays possible kanji meanings and the kanji's radical. Next to each radical, it displays possible radical meanings and a visual mnemonic to see where in nature the radical could stem from.
 <br>
 This dictionary could have many uses but I created it to aid me in my quest to learn Japanese.
+<br>
+![sample dictionary row](https://raw.githubusercontent.com/leonardo-blas/essential-japanese-words-dictionary/main/Sample%20dictionary%20row.png)
 
 ## How to use
 Install all dependencies.
