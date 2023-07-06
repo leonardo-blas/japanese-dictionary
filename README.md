@@ -1,7 +1,7 @@
 Deployed at: [japanesedictionary.pythonanywhere.com](https://japanesedictionary.pythonanywhere.com)
 
 ## Notes
-As a data visualization project, the page may take some seconds to load.
+The page may take some seconds to load.
 <br>
 The data could be displayed on several pages but I prefer seeing all the information on a single page, as it facilitates using Cmd + F.
 <br>
