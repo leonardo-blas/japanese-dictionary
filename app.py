@@ -148,8 +148,6 @@ def create_table():
 
         table_created = True
 
-        print(len(japanese_words_dictionary))
-
 
 @app.route("/")
 def home():
