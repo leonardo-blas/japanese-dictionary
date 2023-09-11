@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Japanese dictionary</title>
+    <style>
+        img {
+            width: 75px;
+            height: 75px;
+        }
+        body {
+            font-size: 20px;
+        }
+        .word-text {
+            font-size: 65px;
+        }
+        .spelling-text {
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="japanese_dictionary" border="1">
+        <tr>
+            <th>word</th>
+            <th>spelling</th>
+            <th>definition</th>
+            <th>kanji</th>
+            <th>kanji meanings</th>
+            <th>radical</th>
+            <th>radical mnemonic</th>
+            <th>radical meanings</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td class="word-text">{{ row[0] }}</td>
+            <td class="spelling-text">{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>
+                <table>
+                    {% for item in row[3].split(';') %}
+                    <tr>
+                        <td class="word-text">{{ item }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            <td>
+                <table>
+                    {% for item in row[4].split(';') %}
+                    <tr>
+                        <td>{{ item }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            <td>
+              <table>
+                {% for item in row[5].split(';') %}
+                <tr>
+                  <td>
+                    <img loading="lazy" src="{{ item }}">
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+            <td>
+              <table>
+                {% for item in row[6].split(';') %}
+                <tr>
+                  <td>
+                    <img loading="lazy" src="{{ item }}">
+                  </td>
+                </tr>
+                {% endfor %}
+              </table>
+            </td>
+            <td>
+                <table>
+                    {% for item in row[7].split(';') %}
+                    <tr>
+                        <td>{{ item }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

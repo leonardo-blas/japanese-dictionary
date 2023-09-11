@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unique First Characters</title>
+</head>
+<body>
+    <h1>List of Unique First Characters</h1>
+    <ul>
+        {% for character in first_characters %}
+            <li><a href="/{{ character }}">{{ character }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
