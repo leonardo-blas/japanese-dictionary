@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Japanese dictionary</title>
+    <style>
+        img {
+            width: 75px;
+            height: 75px;
+        }
+        body {
+            font-size: 25px;
+        }
+        .word-text {
+            font-size: 65px;
+        }
+        .spelling-text {
+            font-size: 35px;
+        }
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+          padding: 15px;
+        }
+        th {
+            background-color: #A7C7E7;
+        }
+        tr {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Definition</th>
+            <th>Spelling</th>
+            <th>Word</th>
+            <th>Kanji meaning</th>
+            <th>Radical</th>
+            <th>Radical meaning</th>
+            <th>Radical mnemonic</th>
+        </tr>
+        {% for word_data in data %}
+        <tr>
+            <td rowspan="{{ word_data[2]|length }}">{{ word_data[0] }}</td>
+            <td class="spelling-text" rowspan="{{ word_data[2]|length }}">{{ word_data[1] }}</td>
+
+            {% for kanji_data in word_data[2] %}
+            <td class="word-text">{{ kanji_data[0] }}</td>
+            <td>{{ kanji_data[1] }}</td>
+            <td>
+                {% if kanji_data[2] is none or kanji_data[2] == "" %}
+                    <!-- Display nothing. -->
+                {% else %}
+                    <img src="{{ kanji_data[2] }}" alt="Radical">
+                {% endif %}
+            </td>
+            <td>{{ kanji_data[3] }}</td>
+            <td>
+                {% if kanji_data[4] is none or kanji_data[2] == "" %}
+                    <!-- Display nothing. -->
+                {% else %}
+                    <img src="{{ kanji_data[4] }}" alt="Radical mnemonic">
+                {% endif %}
+            </td>
+        </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+</body>
+</html>
