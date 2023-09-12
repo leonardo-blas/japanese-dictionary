@@ -17,7 +17,7 @@ This dictionary could have many uses but I created it to aid me in my quest to l
 
 
 
-## How to use
+## Running a local version
 **These instructions are only for the SQLite version.**
 <br>
 Install all dependencies:
