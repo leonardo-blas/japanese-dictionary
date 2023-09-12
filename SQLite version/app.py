@@ -1,28 +1,7 @@
+import sqlite3
 from flask import Flask, render_template
-import pymysql
 
 app = Flask(__name__)
-
-WORDS_DB_CONFIG = {
-    'host': 'japanesedictionary.mysql.pythonanywhere-services.com',
-    'user': 'japanesedictiona',
-    'password': 'capybara',
-    'database': 'japanesedictiona$words',
-}
-
-KANJI_DB_CONFIG = {
-    'host': 'japanesedictionary.mysql.pythonanywhere-services.com',
-    'user': 'japanesedictiona',
-    'password': 'capybara',
-    'database': 'japanesedictiona$kanji',
-}
-
-RADICALS_DB_CONFIG = {
-    'host': 'japanesedictionary.mysql.pythonanywhere-services.com',
-    'user': 'japanesedictiona',
-    'password': 'capybara',
-    'database': 'japanesedictiona$radicals',
-}
 
 
 @app.route('/')
@@ -38,17 +17,17 @@ def index():
     # Dictionary to store starting characters with radical meanings.
     radical_meaning_dict = {}
 
-    words_connection = pymysql.connect(**WORDS_DB_CONFIG)
+    words_connection = sqlite3.connect("words.db")
     words_cursor = words_connection.cursor()
-    # Fetching unique first characters from the words table.
-    words_cursor.execute("SELECT DISTINCT SUBSTRING(word, 1, 1) FROM words")
+    # Fetching unique first characters from the words database.
+    words_cursor.execute("SELECT DISTINCT SUBSTR(word, 1, 1) FROM words")
     first_characters = [row[0] for row in words_cursor.fetchall()]
 
     for character in first_characters:
-        kanji_connection = pymysql.connect(**KANJI_DB_CONFIG)
+        kanji_connection = sqlite3.connect("kanji.db")
         kanji_cursor = kanji_connection.cursor()
-        # Fetch the radical associated with the character.
-        kanji_cursor.execute("SELECT radical FROM kanji WHERE kanji = %s", (character,))
+        # Fetch the radicals associated with the character.
+        kanji_cursor.execute("SELECT radical FROM kanji WHERE kanji = ?", (character,))
         radicals = [row[0] for row in kanji_cursor.fetchall()]
         kanji_connection.close()
 
@@ -57,11 +36,11 @@ def index():
             radical_meaning = "n/a"
         else:
             # Group the character by its associated radical meanings in the dictionary.
-            radicals_connection = pymysql.connect(**RADICALS_DB_CONFIG)
-            radicals_cursor = radicals_connection.cursor()
-            radicals_cursor.execute("SELECT meaning FROM radicals WHERE radical = %s", (radicals[0],))
-            radical_meaning = radicals_cursor.fetchone()[0]
-            radicals_connection.close()
+            radical_connection = sqlite3.connect("radicals.db")
+            radical_cursor = radical_connection.cursor()
+            radical_cursor.execute("SELECT meaning FROM radicals WHERE radical = ?", (radicals[0],))
+            radical_meaning = radical_cursor.fetchone()[0]
+            radical_connection.close()
 
         if radical_meaning not in radical_meaning_dict:
             radical_meaning_dict[radical_meaning] = []
@@ -81,23 +60,23 @@ def display_words_starting_with(starting_character):
     Displays kanji along their meanings.
     Displays radicals along their meanings and mnemonics.
     """
-    word_connection = pymysql.connect(**WORDS_DB_CONFIG)
-    words_cursor = word_connection.cursor()
+    word_conn = sqlite3.connect('words.db')
+    words_cursor = word_conn.cursor()
 
-    kanji_connection = pymysql.connect(**KANJI_DB_CONFIG)
-    kanji_cursor = kanji_connection.cursor()
+    kanji_conn = sqlite3.connect('kanji.db')
+    kanji_cursor = kanji_conn.cursor()
 
-    radicals_connection = pymysql.connect(**RADICALS_DB_CONFIG)
-    radicals_cursor = radicals_connection.cursor()
+    radicals_conn = sqlite3.connect('radicals.db')
+    radicals_cursor = radicals_conn.cursor()
 
-    words_cursor.execute("SELECT * FROM words WHERE word LIKE %s", (starting_character + '%',))
+    words_cursor.execute("SELECT * FROM words WHERE word LIKE ? || '%'", (starting_character,))
     words = words_cursor.fetchall()
 
     data = []
 
     for word in words:
         word = word[0]
-        words_cursor.execute("SELECT * FROM words WHERE word = %s", (word,))
+        words_cursor.execute("SELECT * FROM words WHERE word = ?", (word,))
         word_row = words_cursor.fetchall()
         word_spelling = word_row[0][1]
         word_definition = word_row[0][2]
@@ -105,15 +84,16 @@ def display_words_starting_with(starting_character):
         word_data = []
 
         for character in word:
-            kanji_cursor.execute("SELECT * FROM kanji WHERE kanji = %s", (character,))
+            kanji_cursor.execute("SELECT * FROM kanji WHERE kanji = ?", (character,))
             kanji_row = kanji_cursor.fetchall()
+            kanji_row = kanji_row
 
             if kanji_row:
                 kanji_row = kanji_row[0]
                 kanji_meaning = kanji_row[1]
                 radical = kanji_row[2]
 
-                radicals_cursor.execute("SELECT * FROM radicals WHERE radical = %s", (radical,))
+                radicals_cursor.execute("SELECT * FROM radicals WHERE radical = ?", (radical,))
                 radical_row = radicals_cursor.fetchall()
                 radical_row = radical_row[0]
                 radical_meaning = radical_row[1]
@@ -127,9 +107,9 @@ def display_words_starting_with(starting_character):
 
         data.append([word_spelling, word_definition, word_data])
 
-    word_connection.close()
-    kanji_connection.close()
-    radicals_connection.close()
+    word_conn.close()
+    kanji_conn.close()
+    radicals_conn.close()
 
     return render_template("dictionary_table.html", data=data)
 

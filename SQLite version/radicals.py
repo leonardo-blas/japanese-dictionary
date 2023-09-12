@@ -1,21 +1,14 @@
 import pandas as pd
+import sqlite3
 import unicodedata
 import math
-import pymysql
-
-RADICALS_DB_CONFIG = {
-    'host': 'japanesedictionary.mysql.pythonanywhere-services.com',
-    'user': 'japanesedictiona',
-    'password': 'capybara',
-    'database': 'japanesedictiona$radicals',
-}
 
 
 def create_radicals_table():
-    radicals_connection = pymysql.connect(**RADICALS_DB_CONFIG)
+    radicals_connection = sqlite3.connect("radicals.db")
     radicals_cursor = radicals_connection.cursor()
     radicals_cursor.execute('''CREATE TABLE IF NOT EXISTS radicals (
-        radical VARCHAR(255) PRIMARY KEY,
+        radical TEXT PRIMARY KEY,
         meaning TEXT,
         radical_image_url TEXT,
         radical_mnemonic_url TEXT
@@ -27,7 +20,7 @@ def create_radicals_table():
 def populate_radicals_table():
     dfr = pd.read_csv("https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/japanese-radicals.csv")
 
-    radicals_connection = pymysql.connect(**RADICALS_DB_CONFIG)
+    radicals_connection = sqlite3.connect("radicals.db")
     radicals_cursor = radicals_connection.cursor()
 
     for index, row in dfr.iterrows():
@@ -45,7 +38,7 @@ def populate_radicals_table():
             radical_mnemonic_url = f"https://raw.githubusercontent.com/leonardo-blas/kanji-alive-data-media/master/radical-animations/{romanji_reading}0.svg"
 
         radicals_cursor.execute(
-            "INSERT IGNORE INTO radicals (radical, meaning, radical_image_url, radical_mnemonic_url) VALUES (%s, %s, %s, %s)",
+            "INSERT OR REPLACE INTO radicals (radical, meaning, radical_image_url, radical_mnemonic_url) VALUES (?, ?, ?, ?)",
             (radical, meaning, radical_image_url, radical_mnemonic_url))
 
     radicals_connection.commit()

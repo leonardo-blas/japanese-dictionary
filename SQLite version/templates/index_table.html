@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 15px;
+    }
+    td {
+      text-align: left;
+    }
+    th {
+      background-color: #A7C7E7;
+      text-align: center;
+    }
+    body {
+      font-size: 25px;
+    }
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>Radical Meaning</th>
+        <th>Starting Characters</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for radical_meaning, starting_chars in radical_meaning_dict.items() %}
+        <tr>
+          <td>{{ radical_meaning }}</td>
+          <td>
+            {% for character in starting_chars %}
+              <a href="{{ url_for('display_words_starting_with', starting_character=character) }}">{{ character }}</a>
+              {% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

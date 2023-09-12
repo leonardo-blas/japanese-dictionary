@@ -1,23 +1,16 @@
 import pandas as pd
-import unicodedata
+import sqlite3
 import ast
-import pymysql
-
-WORDS_DB_CONFIG = {
-    'host': 'japanesedictionary.mysql.pythonanywhere-services.com',
-    'user': 'japanesedictiona',
-    'password': 'capybara',
-    'database': 'japanesedictiona$words',
-}
+import unicodedata
 
 
 def create_words_table():
-    words_connection = pymysql.connect(**WORDS_DB_CONFIG)
+    words_connection = sqlite3.connect("words.db")  # Create a separate database for words
     words_cursor = words_connection.cursor()
     words_cursor.execute('''CREATE TABLE IF NOT EXISTS words (
-        word VARCHAR(255) PRIMARY KEY,
+        word TEXT PRIMARY KEY,
         definition TEXT,
-        spelling VARCHAR(255)
+        spelling TEXT
     )''')
     words_connection.commit()
     words_connection.close()
@@ -29,7 +22,7 @@ def populate_words_table():
     # Used to translate Arabic numeric characters to Japanese full-width numeric characters.
     translation_table = str.maketrans("0123456789", "０１２３４５６７８９")
 
-    words_connection = pymysql.connect(**WORDS_DB_CONFIG)
+    words_connection = sqlite3.connect("words.db")
     words_cursor = words_connection.cursor()
 
     for entry in dfw["examples"]:
@@ -39,11 +32,11 @@ def populate_words_table():
         for word_info in entry:
             word_and_spelling = word_info[0].split("（")
             word = unicodedata.normalize("NFKC", word_and_spelling[0])
-            # Translating numeric characters.
+            # Translating number characters.
             word = word.translate(translation_table)
 
             # Check if the word already is in the database.
-            words_cursor.execute("SELECT 1 FROM words WHERE word = %s", (word,))
+            words_cursor.execute("SELECT 1 FROM words WHERE word = ?", (word,))
 
             # Skip if the word is already in the database.
             if words_cursor.fetchone() is not None:
@@ -55,7 +48,7 @@ def populate_words_table():
             definition = word_info[1]
             spelling = word_and_spelling[1][:-1]
 
-            words_cursor.execute("INSERT IGNORE INTO words (word, definition, spelling) VALUES (%s, %s, %s)", (word, definition, spelling))
+            words_cursor.execute("INSERT OR REPLACE INTO words (word, definition, spelling) VALUES (?, ?, ?)", (word, definition, spelling))
 
     words_connection.commit()
     words_connection.close()
