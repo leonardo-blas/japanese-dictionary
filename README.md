@@ -23,14 +23,12 @@ Install all dependencies:
 ```
 pip3 install -r requirements.txt
 ```
-<br>
 Create the databases:
 ```
 python3 words.py
 python3 kanji.py
 python3 radicals.py
 ```
-<br>
 Run the application:
 ```
 flask run
