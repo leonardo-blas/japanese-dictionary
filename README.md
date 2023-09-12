@@ -16,11 +16,22 @@ This dictionary could have many uses but I created it to aid me in my quest to l
 <img width="1461" alt="image" src="https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/6fe7c292-b243-488d-a086-84f83cdc3290">
 
 
+
 ## How to use
-Install all dependencies.
+**These instructions are only for the SQLite version.**
+Install all dependencies:
+```
+pip3 install -r requirements.txt
+```
 <br>
-On the terminal, navigate to the folder containing the files and:
+Create the databases:
+```
+python3 words.py
+python3 kanji.py
+python3 radicals.py
+```
 <br>
+Run the application:
 ```
 flask run
 ```
