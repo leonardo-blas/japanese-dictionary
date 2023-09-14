@@ -1,7 +1,7 @@
 # Japanese dictionary
 Deployed at: [japanesedictionary.pythonanywhere.com](https://japanesedictionary.pythonanywhere.com)
 <br>
-The page may take some seconds to load.
+The page may take some seconds to load. See **Why does it take so long to load?**.
 <br>
 Seeing "n/a" means there is no image associated with a radical or its mnemonic.
 
@@ -36,8 +36,17 @@ Run the application:
 flask run
 ```
 
+## Why does it take so long to load?
+The current architecture depends on 3 databases. One for 8474 words, their spelling, and their definitions. A second for 1235 kanji, their meanings and their radicals. And a third for 319 radicals, their meanings, and their mnemonics.
+<br>
+The idea was to avoid creating a one-database app, as some kanji map to the same radical, and some words contain kanji found in other words. In other words, the idea was to avoid data redundancy. So, the initial proposal was to create 3 databases and query them to render the tables. This consumes considerably less memory, but I didn't consider that the latency from querying several tables would significantly slow down the rendering time.
+<br>
+This is probably because PythonAnywhere doesn't necessarily host the databases in the same drive (probably it does some sort of sharding across a distributed system), making querying from several tables not a responsive architecture (at least under the PythonAnywhere free plan).
+<br>
+My hypothesis is that creating a single table would consume considerable more space than 3 tables, but querying it would significatively reduce latency times.
+
 ## What's next
-Styling the tables, UI development.
+Creating and deploying one-table version. Styling the tables, UI development.
 
 ## Credits
 I developed this using the Kanji alive data, which is publicly available on https://github.com/kanjialive/kanji-data-media.
