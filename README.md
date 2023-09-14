@@ -37,7 +37,7 @@ flask run
 ```
 
 ## Why does it take so long to load?
-The current architecture depends on 3 databases. One for 8474 words, their spelling, and their definitions. A second for 1235 kanji, their meanings and their radicals. And a third for 319 radicals, their meanings, and their mnemonics.
+The current architecture depends on 3 databases. One for 8474 words, their spelling, and their definitions. A second for 1234 kanji, their meanings and their radicals. And a third for 319 radicals, their meanings, and their mnemonics.
 <br>
 The idea was to avoid creating a one-database app, as some kanji map to the same radical, and some words contain kanji found in other words. In other words, the idea was to avoid data redundancy. So, the initial proposal was to create 3 databases and query them to render the tables. This consumes considerably less memory, but I didn't consider that the latency from querying several tables would significantly slow down the rendering time.
 <br>
