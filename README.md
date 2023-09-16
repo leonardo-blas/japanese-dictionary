@@ -46,7 +46,7 @@ This is probably because PythonAnywhere doesn't necessarily host the databases i
 My hypothesis is that creating a single table would consume considerable more space than 3 tables, but querying it would significatively reduce latency times.
 
 ## What's next
-Creating and deploying one-table version. Styling the tables, UI development.
+Creating and deploying a one-table version. Styling the tables, UI development.
 
 ## Credits
 I developed this using the Kanji alive data, which is publicly available on https://github.com/kanjialive/kanji-data-media.
