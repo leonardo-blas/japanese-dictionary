@@ -14,12 +14,16 @@ RADICALS_DB_CONFIG = {
 def create_radicals_table():
     radicals_connection = pymysql.connect(**RADICALS_DB_CONFIG)
     radicals_cursor = radicals_connection.cursor()
-    radicals_cursor.execute('''CREATE TABLE IF NOT EXISTS radicals (
-        radical VARCHAR(255) PRIMARY KEY,
-        meaning TEXT,
-        radical_image_url TEXT,
-        radical_mnemonic_url TEXT
-    )''')
+    radicals_cursor.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS radicals (
+            radical VARCHAR(255) PRIMARY KEY,
+            meaning VARCHAR(255),
+            radical_image_url VARCHAR(255),
+            radical_mnemonic_url VARCHAR(255)
+        )
+        '''
+    )
     radicals_connection.commit()
     radicals_connection.close()
 
@@ -45,8 +49,17 @@ def populate_radicals_table():
             radical_mnemonic_url = f"https://raw.githubusercontent.com/leonardo-blas/kanji-alive-data-media/master/radical-animations/{romanji_reading}0.svg"
 
         radicals_cursor.execute(
-            "INSERT IGNORE INTO radicals (radical, meaning, radical_image_url, radical_mnemonic_url) VALUES (%s, %s, %s, %s)",
-            (radical, meaning, radical_image_url, radical_mnemonic_url))
+            '''
+            INSERT IGNORE INTO radicals (
+                radical,
+                meaning,
+                radical_image_url,
+                radical_mnemonic_url
+            )
+            VALUES (%s, %s, %s, %s)
+            ''',
+            (radical, meaning, radical_image_url, radical_mnemonic_url)
+        )
 
     radicals_connection.commit()
     radicals_connection.close()

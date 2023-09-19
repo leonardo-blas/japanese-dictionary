@@ -1,5 +1,7 @@
 venv/
 .idea/
+Architecture/
+
 .DS_Store
 Dockerfile
 words.db

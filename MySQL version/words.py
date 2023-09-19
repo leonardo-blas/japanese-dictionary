@@ -14,11 +14,14 @@ WORDS_DB_CONFIG = {
 def create_words_table():
     words_connection = pymysql.connect(**WORDS_DB_CONFIG)
     words_cursor = words_connection.cursor()
-    words_cursor.execute('''CREATE TABLE IF NOT EXISTS words (
-        word VARCHAR(255) PRIMARY KEY,
-        definition TEXT,
-        spelling VARCHAR(255)
-    )''')
+    words_cursor.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS words (
+            word VARCHAR(255) PRIMARY KEY,
+            definition VARCHAR(255),
+            spelling VARCHAR(255)
+        )'''
+    )
     words_connection.commit()
     words_connection.close()
 
@@ -55,7 +58,17 @@ def populate_words_table():
             definition = word_info[1]
             spelling = word_and_spelling[1][:-1]
 
-            words_cursor.execute("INSERT IGNORE INTO words (word, definition, spelling) VALUES (%s, %s, %s)", (word, definition, spelling))
+            words_cursor.execute(
+                '''
+                INSERT IGNORE INTO words (
+                    word,
+                    definition,
+                    spelling
+                )
+                VALUES (%s, %s, %s)
+                ''',
+                (word, definition, spelling)
+            )
 
     words_connection.commit()
     words_connection.close()

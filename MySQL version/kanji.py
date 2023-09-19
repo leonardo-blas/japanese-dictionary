@@ -13,11 +13,15 @@ KANJI_DB_CONFIG = {
 def create_kanji_table():
     kanji_connection = pymysql.connect(**KANJI_DB_CONFIG)
     kanji_cursor = kanji_connection.cursor()
-    kanji_cursor.execute('''CREATE TABLE IF NOT EXISTS kanji (
-        kanji VARCHAR(255) PRIMARY KEY,
-        meaning TEXT,
-        radical TEXT
-    )''')
+    kanji_cursor.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS kanji (
+            kanji VARCHAR(255) PRIMARY KEY,
+            meaning VARCHAR(255),
+            radical VARCHAR(255)
+        )
+        '''
+    )
     kanji_connection.commit()
     kanji_connection.close()
 
@@ -32,7 +36,17 @@ def populate_kanji_table():
         kanji = row["kanji"]
         meaning = row["kmeaning"]
         radical = unicodedata.normalize("NFKC", row["radical"])
-        kanji_cursor.execute("INSERT IGNORE INTO kanji (kanji, meaning, radical) VALUES (%s, %s, %s)", (kanji, meaning, radical))
+        kanji_cursor.execute(
+            '''
+            INSERT IGNORE INTO kanji (
+                kanji,
+                meaning,
+                radical
+            )
+            VALUES (%s, %s, %s)
+            ''',
+            (kanji, meaning, radical)
+        )
 
     kanji_connection.commit()
     kanji_connection.close()
