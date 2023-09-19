@@ -34,6 +34,16 @@ flask run
 ```
 
 ## Architecture
+The architecture depends on 3 databases:
+  * One for 8474 words, their spelling, and their definitions.
+  * A second for 1234 kanji, their meanings and their radicals.
+  * And a third for 319 radical characters, their meanings, and their mnemonics.
+Note that there are only 214 unique radicals, but a radical may have more than one character associated with it (different versions of the same radical).
+<br>
+The backend is managed using Flask.
+<br>
+The application is hosted using Gunicorn and it's made available online using NGINX.
+
 ![Architecture](https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/f4205a29-047e-4b52-aed2-98a13093c413)
 
 <img width="1728" alt="SQL tables" src="https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/6317e757-c979-4005-8219-22911721483e">
