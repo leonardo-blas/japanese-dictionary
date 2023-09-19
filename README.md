@@ -1,4 +1,4 @@
-![Architecture](https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/f6194c82-de82-4bb6-a1d9-4f6af62b3109)![Architecture](https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/c21e94d0-e0b0-4f64-a3dd-376d2e9c0ad7)# Japanese dictionary
+# Japanese dictionary
 Deployed at: http://3.141.39.12/
 <br>
 Seeing "n/a" means there is no image associated with a mnemonic.
