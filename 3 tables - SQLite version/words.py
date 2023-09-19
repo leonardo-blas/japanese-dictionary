@@ -7,17 +7,21 @@ import unicodedata
 def create_words_table():
     words_connection = sqlite3.connect("words.db")  # Create a separate database for words
     words_cursor = words_connection.cursor()
-    words_cursor.execute('''CREATE TABLE IF NOT EXISTS words (
-        word TEXT PRIMARY KEY,
-        definition TEXT,
-        spelling TEXT
-    )''')
+    words_cursor.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS words (
+            word TEXT PRIMARY KEY,
+            definition TEXT,
+            spelling TEXT
+        )
+        '''
+    )
     words_connection.commit()
     words_connection.close()
 
 
 def populate_words_table():
-    dfw = pd.read_csv("https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv")
+    wdf = pd.read_csv("https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv")
 
     # Used to translate Arabic numeric characters to Japanese full-width numeric characters.
     translation_table = str.maketrans("0123456789", "０１２３４５６７８９")
@@ -25,7 +29,7 @@ def populate_words_table():
     words_connection = sqlite3.connect("words.db")
     words_cursor = words_connection.cursor()
 
-    for entry in dfw["examples"]:
+    for entry in wdf["examples"]:
         # Parsing an entry, a string formatted as a list, into a Python list.
         entry = ast.literal_eval(entry)
 
@@ -48,7 +52,17 @@ def populate_words_table():
             definition = word_info[1]
             spelling = word_and_spelling[1][:-1]
 
-            words_cursor.execute("INSERT OR REPLACE INTO words (word, definition, spelling) VALUES (?, ?, ?)", (word, definition, spelling))
+            words_cursor.execute(
+                '''
+                INSERT OR REPLACE INTO words (
+                    word,
+                    definition,
+                    spelling
+                )
+                VALUES (?, ?, ?)
+                ''',
+                (word, definition, spelling)
+            )
 
     words_connection.commit()
     words_connection.close()

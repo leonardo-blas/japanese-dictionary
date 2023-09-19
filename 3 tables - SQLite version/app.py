@@ -4,7 +4,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def index():
     """
     Renders a table in the format radical meaning, symbol.
@@ -60,13 +60,13 @@ def display_words_starting_with(starting_character):
     Displays kanji along their meanings.
     Displays radicals along their meanings and mnemonics.
     """
-    word_conn = sqlite3.connect('words.db')
+    word_conn = sqlite3.connect("words.db")
     words_cursor = word_conn.cursor()
 
-    kanji_conn = sqlite3.connect('kanji.db')
+    kanji_conn = sqlite3.connect("kanji.db")
     kanji_cursor = kanji_conn.cursor()
 
-    radicals_conn = sqlite3.connect('radicals.db')
+    radicals_conn = sqlite3.connect("radicals.db")
     radicals_cursor = radicals_conn.cursor()
 
     words_cursor.execute("SELECT * FROM words WHERE word LIKE ? || '%'", (starting_character,))
@@ -115,4 +115,4 @@ def display_words_starting_with(starting_character):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0', port=8000)
