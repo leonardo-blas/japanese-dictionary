@@ -38,7 +38,7 @@ The architecture depends on 3 databases:
   * One for 8474 words, their spelling, and their definitions.
   * A second for 1234 kanji, their meanings and their radicals.
   * And a third for 319 radical characters, their meanings, and their mnemonics.
-<br>
+
 Note that there are only 214 unique radicals, but a radical may have more than one character associated with it (different versions of the same radical).
 <br>
 The backend is managed using Flask.
