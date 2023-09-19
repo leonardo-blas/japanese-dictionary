@@ -66,6 +66,8 @@ Think about a computer vision algorithm to identify the non-radical "building bl
 
 ### Deployment
 Get a custom domain name.
+<br>
+Make Gunicorn and NGINX bootup routines, so if the instance restarts for any reason, the app will go back online.
 
 ## Credits
 I developed this using the Kanji alive data, which is publicly available on https://github.com/kanjialive/kanji-data-media.
