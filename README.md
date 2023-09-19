@@ -44,6 +44,8 @@ Styling the tables.
 ### Features
 Adding a search bar.
 <br>
+Add a romanji spelling column for words. Use the romkan library to render the column.
+<br>
 Think about a computer vision algorithm to identify the non-radical "building blocks" of kanji.
 
 ### Deployment
