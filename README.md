@@ -44,6 +44,8 @@ Note that there are only 214 unique radicals, but a radical may have more than o
 The backend is managed using Flask.
 <br>
 The application is hosted using Gunicorn and it's made available online using NGINX.
+<br>
+All components are deployed on an EC2 Ubuntu T2 instance.
 
 ![Architecture](https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/f4205a29-047e-4b52-aed2-98a13093c413)
 
