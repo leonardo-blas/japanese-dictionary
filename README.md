@@ -49,9 +49,12 @@ My hypothesis is that creating a single table would consume considerable more sp
 ### Styling
 Change （ characters for ( .
 Styling the tables.
+
 ### Features
 Adding a search bar.
+<br>
 Think about a computer vision algorithm to identify the non-radical "building blocks" of kanji.
+
 ### Deployment
 Get a custom domain name.
 
