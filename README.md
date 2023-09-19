@@ -54,6 +54,7 @@ All components are deployed on an EC2 Ubuntu T2 instance.
 ## What's next (potentially)
 ### Styling
 Change （ characters for ( in the radical meaning column.
+<br>
 Styling the tables.
 
 ### Features
