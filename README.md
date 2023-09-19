@@ -38,7 +38,7 @@ flask run
 
 ## What's next (potentially)
 ### Styling
-Change （ characters for ( .
+Change （ characters for ( in the radical meaning column.
 Styling the tables.
 
 ### Features
