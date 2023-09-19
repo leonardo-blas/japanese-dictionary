@@ -1,5 +1,5 @@
 # Japanese dictionary
-Deployed at: [japanesedictionary.pythonanywhere.com](https://japanesedictionary.pythonanywhere.com)
+Deployed at: http://3.141.39.12/
 <br>
 The page may take some seconds to load. See **Why does it take so long to load?**.
 <br>
