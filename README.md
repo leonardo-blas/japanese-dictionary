@@ -51,7 +51,7 @@ All components are deployed on an EC2 Ubuntu T2 instance.
 
 <img width="1728" alt="SQL tables" src="https://github.com/leonardo-blas/japanese-dictionary/assets/125172895/6317e757-c979-4005-8219-22911721483e">
 
-## What's next (potentially)
+## What's next
 ### Styling
 Change （ characters for ( in the radical meaning column.
 <br>
