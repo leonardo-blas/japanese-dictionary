@@ -1,7 +1,7 @@
 # Japanese dictionary
 Deployed at: http://3.141.39.12/
 <br>
-Using the japanesedictionary.pythonanywhere.com link will redirect you to the address above. This is a temprary placeholder until I get a prettier domain name.
+Using the [japanesedictionary.pythonanywhere.com](japanesedictionary.pythonanywhere.com) link will redirect you to the address above. This is a temprary placeholder until I get a prettier domain name.
 <br>
 Seeing "n/a" means there is no image associated with a mnemonic.
 
