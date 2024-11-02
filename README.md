@@ -1,9 +1,9 @@
 # Japanese dictionary
-[comment]: Deployed at: http://3.141.39.12/
-[comment]: <br>
-[comment]: Prettier domain name pending.
-[comment]: <br>
-[comment]: Seeing "n/a" means there is no image associated with a mnemonic.
+[//]: # Deployed at: http://3.141.39.12/
+[//]: # <br>
+[//]: # Prettier domain name pending.
+[//]: # <br>
+[//]: # Seeing "n/a" means there is no image associated with a mnemonic.
 No longer deployed.
 
 ## Description
