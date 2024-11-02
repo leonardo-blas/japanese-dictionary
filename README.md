@@ -1,9 +1,10 @@
 # Japanese dictionary
-Deployed at: http://3.141.39.12/
-<br>
-Prettier domain name pending.
-<br>
-Seeing "n/a" means there is no image associated with a mnemonic.
+[comment]: Deployed at: http://3.141.39.12/
+[comment]: <br>
+[comment]: Prettier domain name pending.
+[comment]: <br>
+[comment]: Seeing "n/a" means there is no image associated with a mnemonic.
+No longer deployed.
 
 ## Description
 This creates and displays a dictionary of essential Japanese words. It displays words next to their definition, hiragana spelling, and kanji composition. Next to each kanji, it displays possible kanji meanings and the kanji's radical. Next to each radical, it displays possible radical meanings and a visual mnemonic to see where in nature the radical could stem from.
